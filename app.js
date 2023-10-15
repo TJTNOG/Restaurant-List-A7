@@ -50,12 +50,37 @@ app.get("/restaurants/:restaurantId", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-
 app.post('/restaurants', (req, res) => {
   Restaurant.create(req.body)
   .then(() => res.redirect('/'))
   .catch(err => console.log(err))
 })
+
+app.get("/restaurants/:restaurantId/edit", (req, res) => {
+  const { restaurantId } = req.params;
+  Restaurant.findById(restaurantId)
+    .lean()
+    .then((restaurantData) => res.render("edit", { restaurantData }))
+    .catch((err) => console.log(err));
+});
+
+app.put("/restaurants/:restaurantId", (req, res) => {
+  const { restaurantId } = req.params;
+  Restaurant.findByIdAndUpdate(restaurantId, req.body)
+    //可依照專案發展方向自定編輯後的動作，這邊是導向到瀏覽特定餐廳頁面
+    .then(() => res.redirect(`/restaurants/${restaurantId}`))
+    .catch((err) => console.log(err));
+});
+// app.post("/restaurants/:restaurantId/edit", (req, res) => {
+//   const restaurantId = req.params.id;
+
+//   return Restaurant.findByIdAndUpdate(restaurantId, req.body)
+//     .then((restaurant) => {
+//       return restaurant.save();
+//     })
+//     .then(() => res.redirect(`/restaurants/${restaurantId}`))
+//     .catch((error) => console.log(error));
+// });
 
 app.listen(port, () => {
   console.log(`App is running on http://localhost:${port}`);
