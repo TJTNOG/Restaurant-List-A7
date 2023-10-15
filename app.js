@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const Restaurant = require('./models/restaurant')
 const port = 3000
 
 if (process.env.NODE_ENV !== "production") {
@@ -28,7 +29,10 @@ app.engine("hbs", exphbs({ defaultLayout: "main", extname: "hbs" }));
 app.set("view engine", "hbs");
 
 app.get('/', (req, res) => {
-  res.render('index')
+  Restaurant.find()
+  .lean()
+  .then(restaurants => res.render('index', { restaurants }))
+  .catch(error => console.error(error))
 })
 
 app.listen(port, () => {
