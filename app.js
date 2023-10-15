@@ -42,6 +42,15 @@ app.get('/restaurants/new', (req, res) => {
   return res.render('new')
 })
 
+app.get("/restaurants/:restaurantId", (req, res) => {
+  const { restaurantId } = req.params;
+  Restaurant.findById(restaurantId)
+    .lean()
+    .then((restaurant) => res.render("show", { restaurant }))
+    .catch((err) => console.log(err));
+});
+
+
 app.post('/restaurants', (req, res) => {
   Restaurant.create(req.body)
   .then(() => res.redirect('/'))
