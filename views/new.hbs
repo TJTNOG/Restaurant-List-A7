@@ -9,6 +9,7 @@
         id="name"
         placeholder="請輸入餐廳名稱"
         name="name"
+        maxlength="15"
         required
       />
     </div>
@@ -20,28 +21,21 @@
         id="name_en"
         placeholder="請輸入餐廳名稱(英文)"
         name="name_en"
+        maxlength="30"
         required
       />
     </div>
     <div class="mb-3">
       <label for="category" class="form-label">餐廳類別<span class="text-danger">*</span></label>
-      <input
-        type="text"
-        class="form-control"
-        id="category"
-        placeholder="請選擇餐廳類別"
-        list="categoryOptions"
-        name="category"
-        required
-      />
-      <datalist id="categoryOptions">
+      <select id="category" name="category">
         <option>中東料理</option>
         <option>日本料理</option>
         <option>義式餐廳</option>
         <option>美式</option>
         <option>酒吧</option>
         <option>咖啡</option>
-      </datalist>
+        <option>其他</option>
+    </select>
     </div>
     <div class="mb-3">
       <label for="image" class="form-label">圖片連結<span class="text-danger">*</span></label>
@@ -61,17 +55,19 @@
         id="location"
         placeholder="請輸入餐廳地址"
         name="location"
+        maxlength="40"
         required
       />
     </div>
     <div class="mb-3">
       <label for="phone" class="form-label">電話<span class="text-danger">*</span></label>
       <input
-        type="text"
+        type="tel"
         class="form-control"
         id="phone"
         placeholder="請輸入餐廳電話"
         name="phone"
+        maxlength="15"
         required
       />
     </div>
@@ -88,13 +84,14 @@
     <div class="mb-3">
       <label for="rating" class="form-label">評分<span class="text-danger">*</span></label>
       <input
-        type="text"
+        type="number"
         class="form-control"
         id="rating"
         min="0"
         max="5"
         step="0.1"
         name="rating"
+        maxlength="3"
         required
       />
     </div>
@@ -106,6 +103,7 @@
         id="description"
         row="3"
         name="description"
+        maxlength="500"
         required
       ></textarea>
     </div>

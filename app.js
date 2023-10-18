@@ -55,7 +55,7 @@ app.get("/restaurants/:restaurantId", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-app.post('/restaurants', (req, res) => {
+app.post('/restaurants', validateData, (req, res) => {
   Restaurant.create(req.body)
   .then(() => res.redirect('/'))
   .catch(err => console.log(err))
@@ -69,10 +69,9 @@ app.get("/restaurants/:restaurantId/edit", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-app.put("/restaurants/:restaurantId", (req, res) => {
+app.put("/restaurants/:restaurantId", validateData, (req, res) => {
   const { restaurantId } = req.params;
   Restaurant.findByIdAndUpdate(restaurantId, req.body)
-    //可依照專案發展方向自定編輯後的動作，這邊是導向到瀏覽特定餐廳頁面
     .then(() => res.redirect(`/restaurants/${restaurantId}`))
     .catch((err) => console.log(err));
 });
@@ -88,3 +87,35 @@ app.delete("/restaurants/:restaurantId", (req, res) => {
 app.listen(port, () => {
   console.log(`App is running on http://localhost:${port}`);
 })
+
+//資料驗證
+function validateData(req, res, next) {
+  const {
+    name,
+    name_en,
+    category,
+    image,
+    location,
+    phone,
+    google_map,
+    rating,
+    description,
+  } = req.body;
+
+  // 檢查是否存在必要的屬性
+  if (
+    !name ||
+    !name_en ||
+    !category ||
+    !image ||
+    !location ||
+    !phone ||
+    !google_map ||
+    !rating ||
+    !description
+  ) {
+    return res.status(400).send("缺少必要資料");
+  }
+
+  next();
+}
