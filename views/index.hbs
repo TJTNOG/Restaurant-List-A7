@@ -10,26 +10,25 @@
               aria-describedby="button-addon2" value="{{keywords}}" />
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
-
-          <div class="input-group">
-            <select class="form-select" id="sort" name="sort">
-              <option>A to Z</option>
-              <option>Z to A</option>
-              <option>類別</option>
-              <option>地區</option>
-            </select>
-          </div>
         </div>
       </form>
     </div>
   </div>
 </div>
 
-
-<!-- Add restaurant -->
-<div class="text-end mt-3">
-  <a href="/restaurants/new"><button class="btn btn-primary">新增餐廳</button></a>
-</div>
+<!-- Sorting selecting -->
+<div class="container mt-3">
+    <div class="dropdown d-flex justify-content-end">
+      <button class="btn btn-secondary dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        排序方式
+      </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="/?sort=acs">A-Z</a></li>
+      <li><a class="dropdown-item" href="/?sort=desc">Z-A</a></li>
+      <li><a class="dropdown-item" href="/?sort=category">類別</a></li>
+      <li><a class="dropdown-item" href="/?sort=location">地點</a></li>
+    </ul>
+  </div>
 
 <!-- restaurant list -->
 <div class="container mt-5">
