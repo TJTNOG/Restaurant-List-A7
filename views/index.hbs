@@ -1,3 +1,31 @@
+<!-- search bar -->
+<div class="container search-bar">
+  <div class="search-bar-outer">
+    <div class="search-bar-inner">
+      <h4 class="mb-2">尋找餐廳：</h4>
+      <form action="/search">
+        <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2">          
+          <div class="input-group mb-2 mb-sm-0 mr-sm-2">
+            <input type="text" name="keywords" class="form-control" placeholder="輸入餐廳名稱、分類" aria-label="Restaurant Name..."
+              aria-describedby="button-addon2" value="{{keywords}}" />
+            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+          </div>
+
+          <div class="input-group">
+            <select class="form-select" id="sort" name="sort">
+              <option>A to Z</option>
+              <option>Z to A</option>
+              <option>類別</option>
+              <option>地區</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 <!-- Add restaurant -->
 <div class="text-end mt-3">
   <a href="/restaurants/new"><button class="btn btn-primary">新增餐廳</button></a>
