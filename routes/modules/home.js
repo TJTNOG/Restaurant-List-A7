@@ -21,7 +21,8 @@ router.get("/", (req, res) => {
       sortOptions.location = "asc";
       break;
   }
-  Restaurant.find()
+  const userId = req.user._id
+  Restaurant.find({ userId })
     .lean()
     .sort(sort)
     .then((restaurants) => res.render("index", { restaurants }))
